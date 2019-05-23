@@ -1,0 +1,8 @@
+<style>
+    #canvas {
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+
+<canvas id="canvas" width="800" height="800"></canvas>
