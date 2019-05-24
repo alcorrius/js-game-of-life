@@ -1,11 +1,11 @@
 <script>
     import { onMount } from 'svelte';
+
     let canvas;
     let ctx;
 
     const fieldSize = 800;
     const numberOfCellsInRow = 50;
-    const framesPerSecond = 8;
     $: cellSize = fieldSize / numberOfCellsInRow;
 
     const drawGridLine = (ctx, xb, yb, xe, ye) => {
@@ -37,4 +37,4 @@
     }
 </style>
 
-<canvas id="canvas" width="800" height="800"></canvas>
+<canvas id="canvas" width={fieldSize} height={fieldSize}></canvas>
