@@ -40,7 +40,23 @@
     }
 
     let start = (ctx) => {
-        console.log("started");
+        console.log("run")
+        for (let i = 0; i < numberOfCellsInRow; i++) {
+            for (let j = 0; j < numberOfCellsInRow; j++) {
+                grid[i][j] = Math.random() > initialFillDensity ? 1 : 0;
+                if (grid[i][j] == 1) {
+                    ctx.fillStyle = 'black';
+                    ctx.beginPath();
+                    ctx.arc(cellSize/2 + i * cellSize, cellSize/2 + j * cellSize, cellSize/3, 0, 2 * Math.PI);
+                    ctx.fill();
+                } else {
+                    ctx.fillStyle = 'white';
+                    ctx.beginPath();
+                    ctx.arc(cellSize/2 + i * cellSize, cellSize/2 + j * cellSize, cellSize/3, 0, 2 * Math.PI);
+                    ctx.fill();
+                }
+            }
+        }
     }
 
     onMount(() => {
@@ -48,7 +64,8 @@
         ctx = canvas.getContext('2d');
         drawGrid(ctx);
         randomFill(ctx);
-        start(ctx);
+        // start(ctx);
+        setInterval(() => {start(ctx)}, 500);
     });
 </script>
 
