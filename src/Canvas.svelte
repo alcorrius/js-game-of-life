@@ -7,6 +7,7 @@
 
     const fieldSize = 800;
     const numberOfCellsInRow = 50;
+    const initialFillDensity = 0.9;
     $: cellSize = fieldSize / numberOfCellsInRow;
 
     const drawGridLine = (ctx, xb, yb, xe, ye) => {
@@ -25,13 +26,13 @@
     }
 
     let randomFill = (ctx) => {
-        for (let i=0; i < numberOfCellsInRow; i++) {
+        for (let i = 0; i < numberOfCellsInRow; i++) {
             grid.push([[]]);
             for (let j = 0; j < numberOfCellsInRow; j++) {
-                grid[i][j] = Math.random() > 0.9 ? 1 : 0;
+                grid[i][j] = Math.random() > initialFillDensity ? 1 : 0;
                 if (grid[i][j] == 1) {
                     ctx.beginPath();
-                    ctx.arc(cellSize/2 + i * cellSize, cellSize/2 + j * cellSize, 5, 0, 2 * Math.PI);
+                    ctx.arc(cellSize/2 + i * cellSize, cellSize/2 + j * cellSize, cellSize/3, 0, 2 * Math.PI);
                     ctx.fill();
                 }
             }
