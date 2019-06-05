@@ -42,7 +42,7 @@
 	</div>
 
 	<div class="column2">
-		<Canvas started={started} fieldSize={fieldSize} numberOfCellsInRow={numberOfCellsInRow} onStart=/>
+		<Canvas started={started} fieldSize={fieldSize} numberOfCellsInRow={numberOfCellsInRow} />
 	</div>
 
 </div>
