@@ -1,14 +1,37 @@
 <script>
     import { onMount } from 'svelte';
 
+    export let fieldSize = 800;
+    export let numberOfCellsInRow = 50;
+    export let started = false;
+
+    const initialFillDensity = 0.9;
+
     let canvas;
     let ctx;
     let grid = [];
+    let cellSize;
+    let intervalId;
 
-    const fieldSize = 800;
-    const numberOfCellsInRow = 50;
-    const initialFillDensity = 0.9;
-    $: cellSize = fieldSize / numberOfCellsInRow;
+    $: {
+        if (started) {
+            //draw grid
+            ctx.clearRect(0, 0, fieldSize, fieldSize);
+            drawGrid(ctx);
+            randomFill(ctx);
+
+            //run task
+            intervalId = setInterval(() => {draw(ctx)}, 500);
+
+        } else {
+            clearInterval(intervalId);
+        }
+    }
+
+    $: {
+        cellSize = fieldSize / numberOfCellsInRow;
+    }
+
 
     const drawGridLine = (ctx, xb, yb, xe, ye) => {
         ctx.lineWidth = 1;
@@ -23,6 +46,7 @@
             drawGridLine(ctx, i, 0, i, fieldSize);
             drawGridLine(ctx, 0, i, fieldSize, i);
         }
+        ctx.fill();
     }
 
     let randomFill = (ctx) => {
@@ -39,8 +63,8 @@
         }
     }
 
-    let start = (ctx) => {
-        console.log("run")
+    let draw = (ctx) => {
+        console.log("draw")
         for (let i = 0; i < numberOfCellsInRow; i++) {
             for (let j = 0; j < numberOfCellsInRow; j++) {
                 grid[i][j] = Math.random() > initialFillDensity ? 1 : 0;
@@ -60,13 +84,11 @@
     }
 
     onMount(() => {
+        console.log("mount");
         canvas = document.getElementById('canvas');
         ctx = canvas.getContext('2d');
-        drawGrid(ctx);
-        randomFill(ctx);
-        // start(ctx);
-        setInterval(() => {start(ctx)}, 500);
     });
+
 </script>
 
 <style>

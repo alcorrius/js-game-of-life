@@ -1,10 +1,10 @@
 <script>
-	import Canvas from './Canvas.svelte';
+	import Menu from './Menu.svelte';
 </script>
 
 <style>
 </style>
 
 <div>
-	<Canvas/>
+	<Menu/>
 </div>
