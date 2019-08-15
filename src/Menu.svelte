@@ -1,14 +1,17 @@
 <script>
   import Canvas from "./Canvas.svelte";
 
-  let fieldSize = 100;
-  let numberOfCellsInRow = 10;
-  let started = false;
+  const canvasProps = {
+    fieldSize: 100,
+    numberOfCellsInRow: 10,
+    started: false
+  };
+
   let buttonName = "Start";
 
   let onStart = () => {
-    started = !started;
-    buttonName = started == true ? "Stop" : "Start";
+    canvasProps.started = !canvasProps.started;
+    buttonName = canvasProps.started == true ? "Stop" : "Start";
   };
 </script>
 
@@ -29,15 +32,15 @@
     <h2>Menu</h2>
     <p>
       <label>Field size</label>
-      <input bind:value={fieldSize} />
+      <input bind:value={canvasProps.fieldSize} />
       <label>Cells in row</label>
-      <input bind:value={numberOfCellsInRow} />
+      <input bind:value={canvasProps.numberOfCellsInRow} />
     </p>
     <button on:click={onStart}>{buttonName}</button>
   </div>
 
   <div class="column2">
-    <Canvas {started} {fieldSize} {numberOfCellsInRow} />
+    <Canvas {...canvasProps} />
   </div>
 
 </div>

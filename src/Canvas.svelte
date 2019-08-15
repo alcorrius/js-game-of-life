@@ -103,16 +103,15 @@
 
   onMount(() => {
     console.log("mount");
-    canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
   });
 </script>
 
 <style>
-  #canvas {
+  canvas {
     display: block;
     margin: 0 auto;
   }
 </style>
 
-<canvas id="canvas" width={fieldSize} height={fieldSize} />
+<canvas bind:this={canvas} width={fieldSize} height={fieldSize} />
