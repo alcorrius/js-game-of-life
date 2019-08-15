@@ -1,10 +1,11 @@
 <script>
-	import Menu from './Menu.svelte';
+  import Menu from "./Menu.svelte";
 </script>
 
 <style>
+
 </style>
 
 <div>
-	<Menu/>
+  <Menu />
 </div>
